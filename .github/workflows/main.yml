@@ -1,0 +1,11 @@
+name: Test
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build_and_deploy:
+    name: Publish Site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
