@@ -1,0 +1,32 @@
+import numpy as np
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+import joblib
+
+from pipeline import titanic_pipe
+from config import config
+
+
+def run_training():
+    """Train the model."""
+
+    # read training data
+    data = pd.read_csv(config.CLEANED_DATA)
+
+    # divide train and test
+    X_train, X_test, y_train, y_test = train_test_split(
+        data.drop(config.TARGET, axis=1),
+        data[config.TARGET],
+        test_size=0.2,
+        random_state=config.SEED)  # we are setting the seed here
+
+    # Fit ML pipeline
+    titanic_pipe.fit(X_train, y_train)
+
+    # save pipeline
+    joblib.dump(titanic_pipe, config.PIPELINE_NAME)
+
+
+if __name__ == '__main__':
+    run_training()
