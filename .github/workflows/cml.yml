@@ -10,18 +10,13 @@ jobs:
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-
-          cd titanic_model
-          sudo -H pip install -r requirements.txt
-          python wrangle.py
-          python train_pipeline.py
-          python predict.py
-
+          pip install tox
+          tox      
           echo "## Model metrics" > report.md
-          cat trained_model_artifacts/metrics_0.0.0.txt >> report.md
+          cat titanic_model/trained_model_artifacts/metrics_0.0.0.txt >> report.md
 
           echo "## Confusion Matrix" >> report.md
-          cml-publish trained_model_artifacts/confustion_matrix_v0.0.0.png --md >> report.md
-          cml-publish trained_model_artifacts/normalized_confustion_matrix_v0.0.0.png --md >> report.md
+          cml-publish titanic_model/trained_model_artifacts/confustion_matrix_v0.0.0.png --md >> report.md
+          cml-publish titanic_model/trained_model_artifacts/normalized_confustion_matrix_v0.0.0.png --md >> report.md
 
           cml-send-comment report.md
