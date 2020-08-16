@@ -10,8 +10,9 @@ jobs:
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
+
           cd titanic_model
-          pip install -r requirements.txt
+          sudo -H pip install -r requirements.txt
           python wrangle.py
           python train_pipeline.py
           python predict.py
