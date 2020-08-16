@@ -1,11 +1,16 @@
-# ML Modes
+# ML Model artifacts
 *.pkl
+*.png
+*.txt
 
 # Datasets
 *.csv
 
 #VSCode
 .vs_code/
+
+# Python Vistual Env
+venv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

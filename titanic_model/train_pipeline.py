@@ -4,11 +4,17 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import joblib
 
-from pipeline import titanic_pipe
-from config import config
+from pipeline import titanic_pipe, save_pipeline
+from titanic_model.config import config
+from titanic_model import __version__ as _version
+
+import logging
 
 
-def run_training():
+_logger = logging.getLogger(__name__)
+
+
+def run_training() -> None:
     """Train the model."""
 
     # read training data
@@ -25,7 +31,7 @@ def run_training():
     titanic_pipe.fit(X_train, y_train)
 
     # save pipeline
-    joblib.dump(titanic_pipe, config.PIPELINE_NAME)
+    save_pipeline(pipeline_to_persist=titanic_pipe)
 
 
 if __name__ == '__main__':

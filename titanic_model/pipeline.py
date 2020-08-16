@@ -1,10 +1,16 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
+import joblib
 
-from processing import preprocessors as pp
-from config import config
+from titanic_model.processing import preprocessors as pp
+from titanic_model.config import config
+from titanic_model import __version__ as _version
 
+import logging
+import typing as t
+
+_logger = logging.getLogger(__name__)
 
 titanic_pipe = Pipeline(
 
@@ -15,8 +21,6 @@ titanic_pipe = Pipeline(
             pp.MissingIndicator(variables=config.NUMERICAL_VARS)),
         ('numerical_imputer',
             pp.NumericalImputer(variables=config.NUMERICAL_VARS)),
-        ('cabin_letter_exctractor',
-            pp.ExtractFirstLetter(variables=config.CABIN)),
         ('rare_label_encoder',
             pp.RareLabelCategoricalEncoder(
                 tol=0.05,
@@ -30,3 +34,19 @@ titanic_pipe = Pipeline(
     ]
 
 )
+
+
+def save_pipeline(*, pipeline_to_persist) -> None:
+    """Saves the pipeline"""
+    file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
+    save_path = config.TRAINED_MODEL_DIR / file_name
+    joblib.dump(pipeline_to_persist, save_path)
+    _logger.info(f"Saved pipeline: {file_name}")
+
+
+def load_pipeline(*, file_name: str) -> Pipeline:
+    """Load a persisted pipeline"""
+    file_path = config.TRAINED_MODEL_DIR / file_name
+    _logger.info(f"Loading pipeline: {file_name}")
+    trained_model = joblib.load(filename=file_path)
+    return trained_model

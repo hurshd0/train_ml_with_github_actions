@@ -1,7 +1,7 @@
 import logging
 
 from titanic_model.config import config
-from titanic.config import logging_config
+from titanic_model.config import logging_config
 
 
 VERSION_PATH = config.PACKAGE_ROOT / 'VERSION'

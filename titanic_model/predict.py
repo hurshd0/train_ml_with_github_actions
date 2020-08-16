@@ -1,54 +1,29 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import scikitplot as skplt
+import itertools
 
-import joblib
-from config import config
+from titanic_model.config import config
+from titanic_model import __version__ as _version
+from pipeline import load_pipeline
+
+import logging
+import typing as t
+
+_logger = logging.getLogger(__name__)
+
+pipeline_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
+_titanic_pipe = load_pipeline(file_name=pipeline_file_name)
 
 
-def make_prediction(input_data):
+def make_prediction(*, input_data: t.Union[pd.DataFrame, dict]) -> dict:
     """
-    Loads pipeline and makes predictions
+    Makes prediction
     """
-    _titanic_pipe = joblib.load(filename=config.PIPELINE_NAME)
     results = _titanic_pipe.predict(input_data)
     return results
-
-
-def plot_confusion_matrix(cm, classes,
-                          normalize=False,
-                          title='Confusion matrix',
-                          cmap=plt.cm.Blues):
-    """
-    This function plots the confusion matrix and saves it to artifact folder.
-    Normalization can be applied by setting `normalize=True`.
-
-    Credit: http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html
-    """
-    if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-        file_name = "normalized_confusion_matrix.png"
-    else:
-        file_name = "unormalized_confusion_matrix.png"
-
-    print(cm)
-
-    plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.title(title)
-    plt.colorbar()
-    tick_marks = np.arange(len(classes))
-    plt.xticks(tick_marks, classes, rotation=45)
-    plt.yticks(tick_marks, classes)
-
-    fmt = '.2f' if normalize else 'd'
-    thresh = cm.max() / 2.
-    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j], fmt),
-                 horizontalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
-
-    plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
-    plt.savefig(".png", dpi=120)
 
 
 if __name__ == '__main__':
@@ -57,6 +32,7 @@ if __name__ == '__main__':
     import numpy as np
     from sklearn.model_selection import train_test_split
     from sklearn.metrics import accuracy_score
+    from sklearn.metrics import confusion_matrix
 
     data = pd.read_csv(config.CLEANED_DATA)
 
@@ -66,10 +42,29 @@ if __name__ == '__main__':
         test_size=0.2,
         random_state=config.SEED)
 
-    pred = make_prediction(X_test)
+    y_test_pred = make_prediction(input_data=X_test)
+    y_train_pred = make_prediction(input_data=X_train)
 
     # report metrics
+    # a) confusion matrix
+    cm = confusion_matrix(y_test, y_test_pred)
+    skplt.metrics.plot_confusion_matrix(y_test, y_test_pred)
+    plt.savefig(config.TRAINED_MODEL_DIR /
+                f"confustion_matrix_v{_version}.png")
+    skplt.metrics.plot_confusion_matrix(y_test, y_test_pred, normalize=True)
+    plt.savefig(config.TRAINED_MODEL_DIR /
+                f"normalized_confustion_matrix_v{_version}.png")
 
-    # determine the accuracy
-    print('test accuracy: {}'.format(accuracy_score(y_test, pred)))
-    print()
+    # b) accuracy score
+    acs_test = accuracy_score(y_test, y_test_pred)
+    acs_test_out = f"Test accuracy score: {acs_test}"
+    acs_train = accuracy_score(y_train, y_train_pred)
+    acs_train_out = f"Training accuracy score: {acs_train}"
+
+    _logger.info(acs_train_out)
+    _logger.info(acs_test_out)
+
+    with open(config.TRAINED_MODEL_DIR / f"metrics_{_version}.txt", "w") as fobj:
+        fobj.write(acs_train_out)
+        fobj.write("\n")
+        fobj.write(acs_test_out)
