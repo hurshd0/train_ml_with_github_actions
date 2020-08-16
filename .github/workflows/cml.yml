@@ -10,7 +10,7 @@ jobs:
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install tox
+          sudo -H pip install tox
           tox      
           echo "## Model metrics" > report.md
           cat titanic_model/trained_model_artifacts/metrics_0.0.0.txt >> report.md
