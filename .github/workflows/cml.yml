@@ -15,9 +15,15 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
+          echo "Installing DVC"
+          sudo -H pip install dvc[s3]
+          echo "Installing tox"
+          sudo -H pip install tox
+          echo "DVC pulling data"
+          dvc pull data --run-cache
+
           export VERSION=$(head titanic_model/VERSION)
           echo "## Model Version - $VERSION" > reports.md
-          sudo -H pip install tox
           tox
           echo "## Model metrics" >> report.md
           cat titanic_model/trained_model_artifacts/metrics_$VERSION.txt >> report.md
