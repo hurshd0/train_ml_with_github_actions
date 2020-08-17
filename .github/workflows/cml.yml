@@ -17,7 +17,7 @@ jobs:
           echo "Installing tox"
           sudo -H pip install tox
           echo "DVC pulling data"
-          dvc pull data --run-cache
+          dvc pull
 
           export VERSION=$(head titanic_model/VERSION)
           echo "## Model Version - $VERSION" > reports.md
