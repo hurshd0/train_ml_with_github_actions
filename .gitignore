@@ -4,7 +4,7 @@ titanic_model/trained_ml_artifacts/*.txt
 titanic_model/trained_ml_artifacts/*.png
 
 # Datasets
-*.csv
+titanic_model/data/
 
 # Notebooks
 *.ipynb_checkpoints/
