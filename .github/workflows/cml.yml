@@ -1,8 +1,5 @@
 name: Titanic Model - train & test
-on:
-  pull_request:
-    branches:
-      - master
+on: [push]
 jobs:
   run:
     runs-on: [ubuntu-latest]
