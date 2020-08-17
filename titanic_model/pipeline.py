@@ -7,10 +7,10 @@ from titanic_model.processing import preprocessors as pp
 from titanic_model.config import config
 from titanic_model import __version__ as _version
 
-import logging
+from titanic_model import logger
 import typing as t
 
-_logger = logging.getLogger(__name__)
+
 
 titanic_pipe = Pipeline(
 
@@ -41,12 +41,12 @@ def save_pipeline(*, pipeline_to_persist) -> None:
     file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
     save_path = config.TRAINED_MODEL_DIR / file_name
     joblib.dump(pipeline_to_persist, save_path)
-    _logger.info(f"Saved pipeline: {file_name}")
+    logger.info(f"**Saved pipeline at: {file_name}")
 
 
 def load_pipeline(*, file_name: str) -> Pipeline:
     """Load a persisted pipeline"""
     file_path = config.TRAINED_MODEL_DIR / file_name
-    _logger.info(f"Loading pipeline: {file_name}")
+    logger.info(f"**Loading pipeline from: {file_name}")
     trained_model = joblib.load(filename=file_path)
     return trained_model

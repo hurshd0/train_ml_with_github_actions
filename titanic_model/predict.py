@@ -7,12 +7,9 @@ import itertools
 
 from titanic_model.config import config
 from titanic_model import __version__ as _version
+from titanic_model import logger
 from pipeline import load_pipeline
-
-import logging
 import typing as t
-
-_logger = logging.getLogger(__name__)
 
 pipeline_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
 _titanic_pipe = load_pipeline(file_name=pipeline_file_name)
@@ -41,8 +38,10 @@ if __name__ == '__main__':
         data[config.TARGET],
         test_size=0.2,
         random_state=config.SEED)
-
+    
+    logger.info("**Making inference on test dataset")
     y_test_pred = make_prediction(input_data=X_test)
+    logger.info("**Making inference on training dataset")
     y_train_pred = make_prediction(input_data=X_train)
 
     # report metrics
@@ -61,8 +60,8 @@ if __name__ == '__main__':
     acs_train = accuracy_score(y_train, y_train_pred)
     acs_train_out = f"Training accuracy score: {acs_train}"
 
-    _logger.info(acs_train_out)
-    _logger.info(acs_test_out)
+    logger.info(acs_train_out)
+    logger.info(acs_test_out)
 
     with open(config.TRAINED_MODEL_DIR / f"metrics_{_version}.txt", "w") as fobj:
         fobj.write(acs_train_out)

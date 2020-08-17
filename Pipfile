@@ -9,6 +9,9 @@ seaborn = "*"
 sklearn = "*"
 jupyter = "*"
 ipykernel = "*"
+tox = "*"
+dvc = "*"
+boto3 = "*"
 
 [dev-packages]
 autopep8 = "*"
