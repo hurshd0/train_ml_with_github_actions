@@ -16,7 +16,7 @@ jobs:
           export VERSION=$(head titanic_model/VERSION)
           echo "## Model Version - $VERSION"
           sudo -H pip install tox
-          tox      
+          tox
           echo "## Model metrics" > report.md
           cat titanic_model/trained_model_artifacts/metrics_$VERSION.txt >> report.md
 
