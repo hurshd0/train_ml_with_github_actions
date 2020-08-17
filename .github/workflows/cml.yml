@@ -1,4 +1,4 @@
-name: Titanic Model
+name: Titanic Model - train & test
 on:
   pull_request:
     branches:
@@ -12,6 +12,8 @@ jobs:
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           export VERSION=$(head titanic_model/VERSION)
           echo "## Model Version - $VERSION" > reports.md
