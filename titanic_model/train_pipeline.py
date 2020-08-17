@@ -7,12 +7,7 @@ import joblib
 from pipeline import titanic_pipe, save_pipeline
 from titanic_model.config import config
 from titanic_model import __version__ as _version
-
-import logging
-
-
-_logger = logging.getLogger(__name__)
-
+from titanic_mdoel import logger
 
 def run_training() -> None:
     """Train the model."""
@@ -29,10 +24,10 @@ def run_training() -> None:
 
     # Fit ML pipeline
     titanic_pipe.fit(X_train, y_train)
-
+    logger.info("**Training ML Pipeline started")
     # save pipeline
     save_pipeline(pipeline_to_persist=titanic_pipe)
-
+    logger.info("**Saved trained ML pipeline")
 
 if __name__ == '__main__':
     run_training()
