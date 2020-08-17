@@ -14,10 +14,10 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           export VERSION=$(head titanic_model/VERSION)
-          echo "## Model Version - $VERSION"
+          echo "## Model Version - $VERSION" > reports.md
           sudo -H pip install tox
           tox
-          echo "## Model metrics" > report.md
+          echo "## Model metrics" >> report.md
           cat titanic_model/trained_model_artifacts/metrics_$VERSION.txt >> report.md
 
           echo "## Confusion Matrix" >> report.md
