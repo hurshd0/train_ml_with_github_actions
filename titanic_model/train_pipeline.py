@@ -7,7 +7,7 @@ import joblib
 from pipeline import titanic_pipe, save_pipeline
 from titanic_model.config import config
 from titanic_model import __version__ as _version
-from titanic_mdoel import logger
+from titanic_model import logger
 
 def run_training() -> None:
     """Train the model."""
