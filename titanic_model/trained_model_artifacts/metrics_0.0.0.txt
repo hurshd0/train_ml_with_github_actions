@@ -1,2 +1,2 @@
-Training accuracy score: 0.6895893027698186
-Test accuracy score: 0.6068702290076335
+Training accuracy score: 0.9770773638968482
+Test accuracy score: 0.7900763358778626
