@@ -1,10 +1,13 @@
 # ML Model artifacts
-*.pkl
-*.png
-*.txt
+titanic_model/trained_ml_artifacts/*.pkl
+titanic_model/trained_ml_artifacts/*.txt
+titanic_model/trained_ml_artifacts/*.png
 
 # Datasets
+titanic_model/data/
 
+# Notebooks
+*.ipynb_checkpoints/
 
 #VSCode
 .vs_code/

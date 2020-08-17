@@ -8,6 +8,7 @@ VERSION_PATH = config.PACKAGE_ROOT / 'VERSION'
 
 # Configure logger for use in package
 logger = logging.getLogger(__name__)
+print(f"From init: {__name__}")
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging_config.get_console_handler())
 logger.propagate = False

@@ -1,2 +1,7 @@
-# train_ml_with_github_actions
-Learn how to do train a simple ML model with Github Actions
+# Automate your training of ML models with Github Actions, DVC for large datasets and CML to create reports
+
+
+Learn how to do ML Ops using Github Actions, DVC, and CML
+
+
+
