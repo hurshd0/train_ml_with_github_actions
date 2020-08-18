@@ -9,7 +9,7 @@ jobs:
       - name: Git clone our repository
       - uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
+      - name: Train ML Model & Publish report
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           # AWS Access Key ID. This input is required if running in the GitHub hosted environment.
@@ -18,14 +18,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           # AWS Region, e.g. us-east-2
           AWS_REGION: ${{ env.AWS_REGION }}
-      - name: Install dependencies & package requirements
         run: |
           echo "[INFO] Installing DVC"
           sudo -H pip install dvc[s3]
           echo "[INFO] Installing tox"
           sudo -H pip install tox
-      - name: Train ML Model & Publish report
-        run: |
           echo "[INFO] DVC pulling data"
           dvc pull 
           export VERSION=$(head titanic_model/VERSION)
