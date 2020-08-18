@@ -1,7 +1,6 @@
-# Automate your training of ML models with Github Actions, DVC for large datasets and CML to create reports
+# Automate your training of ML models with Github Actions
 
 
-Learn how to do ML Ops using Github Actions, DVC, and CML
 
 
 
