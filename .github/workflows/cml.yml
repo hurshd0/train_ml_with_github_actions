@@ -1,32 +1,48 @@
 name: Titanic Model - train & test
 on: [push]
 jobs:
-  run:
+  ci-pipeline:
     runs-on: [ubuntu-latest]
     container: docker://dvcorg/cml-py3:latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Git clone our repository
       - uses: actions/checkout@v2
-      - name: cml_run
+
+      - name: Configure AWS Credentials
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          # AWS Access Key ID. This input is required if running in the GitHub hosted environment.
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # AWS Secret Access Key. This input is required if running in the GitHub hosted environment.
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS Region, e.g. us-east-2
+          AWS_REGION: ${{ env.AWS_REGION }}
+      - name: Install dependencies & package requirements
         run: |
-          echo "Installing DVC"
+          echo "[INFO] Installing DVC"
           sudo -H pip install dvc[s3]
-          echo "Installing tox"
+          echo "[INFO] Installing tox"
           sudo -H pip install tox
-          echo "DVC pulling data"
-          dvc pull
-
+      - name: Train ML Model & Publish report
+        run: |
+          echo "[INFO] DVC pulling data"
+          dvc pull 
           export VERSION=$(head titanic_model/VERSION)
-          echo "## Model Version - $VERSION" > reports.md
           tox
+          echo "## Model Version - $VERSION" > report.md
           echo "## Model metrics" >> report.md
           cat titanic_model/trained_model_artifacts/metrics_$VERSION.txt >> report.md
-
           echo "## Confusion Matrix" >> report.md
           cml-publish titanic_model/trained_model_artifacts/confustion_matrix_v$VERSION.png --md >> report.md
           cml-publish titanic_model/trained_model_artifacts/normalized_confustion_matrix_v$VERSION.png --md >> report.md
-
+          echo "[INFO] Sending report as comment"
           cml-send-comment report.md
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: $AWS_ACCESS_KEY_ID
+          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
+          aws-region: $AWS_REGION
+      - name: Copy pickled model to S3 bucket
+        run: aws s3 cp titanic_model/trained_model_artifacts s3://titanic-model/models/ --recursive
