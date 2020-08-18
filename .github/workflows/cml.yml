@@ -28,6 +28,7 @@ jobs:
           echo "## Model Version - $VERSION" > report.md
           echo "## Model metrics" >> report.md
           cat titanic_model/trained_model_artifacts/metrics_$VERSION.txt >> report.md
+          echo "---" >> report.md
           echo "## Confusion Matrix" >> report.md
           cml-publish titanic_model/trained_model_artifacts/confustion_matrix_v$VERSION.png --md >> report.md
           cml-publish titanic_model/trained_model_artifacts/normalized_confustion_matrix_v$VERSION.png --md >> report.md
