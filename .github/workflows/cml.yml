@@ -12,9 +12,10 @@ jobs:
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          
+
         run: |
           printenv
 
+          echo 'HI CML'
           echo 'HI CML' > report.md
-          cml-send-comment report.md
+          #cml-send-comment report.md
