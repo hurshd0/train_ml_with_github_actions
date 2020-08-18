@@ -35,12 +35,12 @@ jobs:
           echo "[INFO] Sending report as comment"
           cml-send-comment report.md
           
-#       - name: Configure AWS Credentials
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-access-key-id: $AWS_ACCESS_KEY_ID
-#           aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
-#           aws-region: us-east-1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
           
       - name: Copy pickled model to S3 bucket
         run: aws s3 cp titanic_model/trained_model_artifacts s3://titanic-model/models/ --recursive
