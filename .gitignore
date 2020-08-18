@@ -1,7 +1,7 @@
-# ML Model artifacts
-titanic_model/trained_ml_artifacts/*.pkl
-titanic_model/trained_ml_artifacts/*.txt
-titanic_model/trained_ml_artifacts/*.png
+# Trained ML model and reports generated
+titanic_model/trained_model_artifacts/*.pkl
+titanic_model/trained_model_artifacts/*.txt
+titanic_model/trained_model_artifacts/*.png
 
 # Datasets
 titanic_model/data/
