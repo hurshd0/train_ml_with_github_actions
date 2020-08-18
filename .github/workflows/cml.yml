@@ -43,4 +43,6 @@ jobs:
           aws-region: us-east-1
           
       - name: Copy pickled model to S3 bucket
-        run: aws s3 cp titanic_model/trained_model_artifacts s3://titanic-model/models/ --recursive
+        run: |
+          sudo -H pip install awscli
+          aws s3 cp titanic_model/trained_model_artifacts s3://titanic-model/models/ --recursive
