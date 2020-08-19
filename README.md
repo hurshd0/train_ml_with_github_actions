@@ -1,8 +1,8 @@
 ### Demo showcasing how to automate your training ML models on Github actions and use DVC for data versioning
 
-### Try it out yourself
+## Follow below instructions to try out 👇
 
-1. Fork this repo
+1. Fork this repo 🍴
 ![](https://i.imgur.com/3fjO1eA.png)
 2. Checkout a branch and test out a different ML model via `git checkout -b random_forest` 
 3. Add ML classifier of your choice to `titanic_model/pipeline.py`
@@ -24,7 +24,7 @@ Once traininig is completed it should look like this
 2. To install dependencies do `pipenv install`
 3. To activate virtual environment do `pipenv shell`
 4. Run Jupyter Notebook by `jupyter notebook` command
-5. Run `tox` to train ML model and generated reports and pipeline is saved in `titanic_model/trained_model_artifacts`
+5. Run `tox` to train ML model and generate reports, and pickled model saved in `titanic_model/trained_model_artifacts`
 
 #### Project structure
 ```
