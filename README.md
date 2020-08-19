@@ -1,4 +1,4 @@
-## Demo showcasing simple MLOps workflows
+## Demo showcasing simple MLOps workflow
 
 ### Follow below instructions to try out 👇
 
