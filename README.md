@@ -22,6 +22,7 @@ Follow this guide if you don't know: [How do I create an S3 Bucket?](https://doc
 5. Go to IAM Console and create AWS Access Keys, store them in safe place
 
 [How do I set up an IAM user and sign in to the AWS Management Console using IAM credentials?](https://www.youtube.com/watch?v=wRzzBb18qUw)
+
 [How do I create an access key for an existing IAM user?](https://www.youtube.com/watch?v=JvtmmS9_tfU)
 
 Some tips:
