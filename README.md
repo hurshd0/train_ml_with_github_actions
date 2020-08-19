@@ -32,10 +32,10 @@ Some tips:
 6. Add your AWS `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to Github Secrets
 ![](https://i.imgur.com/LdWJk4V.png)
 
-7 Create a Pull Request to master
+7. Create a Pull Request to master
 ![](https://i.imgur.com/yhUaqXu.png)
 
-8 Go get a sip of ☕ while your model trains
+8. Go get a sip of ☕ while your model trains
 Once traininig is completed it should look like this
 ![](https://i.imgur.com/4NWGQXp.gif)
 
