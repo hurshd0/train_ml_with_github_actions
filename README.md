@@ -12,8 +12,11 @@
 ![](https://i.imgur.com/jiDyhmW.png)
 
 4. Sign In to AWS Account and create S3 bucket (in N. Virginia) and some folders  
+
 Follow this guide if you don't know: [How do I create an S3 Bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html)
+
 **Should look exactly like**👇
+
 ![](https://i.imgur.com/GX3cV1B.png)
 
 5. Go to IAM Console and create AWS Access Keys, store them in safe place
