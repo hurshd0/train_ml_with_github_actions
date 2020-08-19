@@ -3,6 +3,7 @@
 ### Follow below instructions to try out 👇
 
 1. Fork this repo 🍴
+
 ![](https://i.imgur.com/3fjO1eA.png)
 
 2. Checkout a branch and test out a different ML model via `git checkout -b random_forest` 
