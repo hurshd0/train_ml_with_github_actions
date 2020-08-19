@@ -1,6 +1,6 @@
-### Demo showcasing how to automate your training ML models on Github actions and use DVC for data versioning
+## Demo showcasing simple MLOps workflows
 
-## Follow below instructions to try out 👇
+### Follow below instructions to try out 👇
 
 1. Fork this repo 🍴
 ![](https://i.imgur.com/3fjO1eA.png)
