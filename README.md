@@ -1,5 +1,6 @@
 ## Demo showcasing simple MLOps workflow
 
+
 ### Follow below instructions to try out 👇
 
 1. Fork this repo 🍴
@@ -33,7 +34,7 @@ For more detail instructions follow, https://github.com/aws/aws-cli
 $ aws configure
 AWS Access Key ID: MYACCESSKEY
 AWS Secret Access Key: MYSECRETKEY
-Default region name [us-west-2]: us-west-2
+Default region name [us-east-1]: us-east-1
 Default output format [None]: json
 ```
 6. Download the raw dataset  
