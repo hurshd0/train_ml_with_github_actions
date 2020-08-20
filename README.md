@@ -74,17 +74,17 @@ NOTE: If you have any issues visit: https://dvc.org/doc/user-guide/external-depe
 
 e. Run `tox` to train ML model and generate reports, and pickled model saved in `titanic_model/trained_model_artifacts`
 
-8 Checkout a branch and test out a different ML model via `git checkout -b random_forest` 
+8. Checkout a branch and test out a different ML model via `git checkout -b random_forest` 
 
-9 Add ML classifier of your choice to `titanic_model/pipeline.py`
+9. Add ML classifier of your choice to `titanic_model/pipeline.py`
 ![](https://i.imgur.com/jiDyhmW.png)
 
-10 Add your AWS `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to Github Secrets
+10. Add your AWS `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to Github Secrets
 ![](https://i.imgur.com/LdWJk4V.png)
 
-11 Create a Pull Request to master
+11. Create a Pull Request to master
 ![](https://i.imgur.com/yhUaqXu.png)
 
-12 Go get a sip of ☕ while your model trains
+12. Go get a sip of ☕ while your model trains
 Once traininig is completed it should look like this
 ![](https://i.imgur.com/4NWGQXp.gif)
