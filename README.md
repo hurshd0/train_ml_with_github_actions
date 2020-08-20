@@ -24,7 +24,7 @@ Some tips:
 - For beginners create Admin user with full access
 - For advanced users create a user with only access to that bucket, follow this, [How To Grant Access To Only One S3 Bucket Using AWS IAM Policy](https://objectivefs.com/howto/how-to-restrict-s3-bucket-policy-to-only-one-aws-s3-bucket)
 
-4. Install AWS CLI, I'm using WS on Windows, so I did `python -m pip install --user awscli` to install as global package
+4. Install AWS CLI, I'm using [WSL2 on Windows](https://docs.microsoft.com/en-us/windows/wsl/install-win10), so I did `python -m pip install --user awscli` to install as global package
 
 For more detail instructions follow, https://github.com/aws/aws-cli 
 
