@@ -39,8 +39,11 @@ Default output format [None]: json
 6. Download the raw dataset  
 
 a. Dataset: https://titanic-model.s3.amazonaws.com/raw_titanic.csv
+
 b. Create a folder inside `titanic_model` called `data`, 
+
 following is project structure that should look like
+
 ```
 .
 ├── notebooks
@@ -60,8 +63,11 @@ following is project structure that should look like
 - Conda [Optional, but recommended]
 
 a. If you have conda, than install `pipenv` via `conda install pipenv`, if you don't just do `pip install pipenv`
+
 b. To install dependencies do `pipenv install`
+
 c. To activate virtual environment do `pipenv shell`
+
 d. `cd` into `titanic_model` & do `dvc remote add data` which adds `data` folder so it can be tracked by __DVC__
 
 NOTE: If you have any issues visit: https://dvc.org/doc/user-guide/external-dependencies
