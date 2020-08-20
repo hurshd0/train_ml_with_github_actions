@@ -24,11 +24,11 @@ Some tips:
 - For beginners create Admin user with full access
 - For advanced users create a user with only access to that bucket, follow this, [How To Grant Access To Only One S3 Bucket Using AWS IAM Policy](https://objectivefs.com/howto/how-to-restrict-s3-bucket-policy-to-only-one-aws-s3-bucket)
 
-5. Install AWS CLI, I'm using WS on Windows, so I did `python -m pip install --user awscli` to install as global package
+4. Install AWS CLI, I'm using WS on Windows, so I did `python -m pip install --user awscli` to install as global package
 
 For more detail instructions follow, https://github.com/aws/aws-cli 
 
-6. Configure AWS credentials
+5. Configure AWS credentials
 ```
 $ aws configure
 AWS Access Key ID: MYACCESSKEY
@@ -36,7 +36,7 @@ AWS Secret Access Key: MYSECRETKEY
 Default region name [us-west-2]: us-west-2
 Default output format [None]: json
 ```
-7. Download the raw dataset  
+6. Download the raw dataset  
 
 a. Dataset: https://titanic-model.s3.amazonaws.com/raw_titanic.csv
 b. Create a folder inside `titanic_model` called `data`, 
@@ -52,7 +52,7 @@ following is project structure that should look like
 
 5 directories
 ```
-8. Install packade dependencies and run it locally to verify if it works
+7. Install packade dependencies and run it locally to verify if it works
 
 #### Pre-requisites
 
@@ -68,17 +68,17 @@ NOTE: If you have any issues visit: https://dvc.org/doc/user-guide/external-depe
 
 e. Run `tox` to train ML model and generate reports, and pickled model saved in `titanic_model/trained_model_artifacts`
 
-9. Checkout a branch and test out a different ML model via `git checkout -b random_forest` 
+8 Checkout a branch and test out a different ML model via `git checkout -b random_forest` 
 
-10. Add ML classifier of your choice to `titanic_model/pipeline.py`
+9 Add ML classifier of your choice to `titanic_model/pipeline.py`
 ![](https://i.imgur.com/jiDyhmW.png)
 
-11. Add your AWS `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to Github Secrets
+10 Add your AWS `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to Github Secrets
 ![](https://i.imgur.com/LdWJk4V.png)
 
-12. Create a Pull Request to master
+11 Create a Pull Request to master
 ![](https://i.imgur.com/yhUaqXu.png)
 
-13. Go get a sip of ☕ while your model trains
+12 Go get a sip of ☕ while your model trains
 Once traininig is completed it should look like this
 ![](https://i.imgur.com/4NWGQXp.gif)
