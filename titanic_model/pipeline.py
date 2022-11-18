@@ -1,4 +1,5 @@
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 import joblib
@@ -29,8 +30,7 @@ titanic_pipe = Pipeline(
             pp.CategoricalEncoder(variables=config.CATEGORICAL_VARS)),
         ('scaler',
             StandardScaler()),
-        ('Linear_model', LogisticRegression(
-            C=config.REG_PARAM, random_state=config.SEED))
+        ('random_forest_classifier', RandomForestClassifier(random_state=config.SEED))
     ]
 
 )
